@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио: Максим Валишин - KIBERone</title>
+    <style>
+        /* === ОСНОВНЫЕ СТИЛИ И ПЕРЕМЕННЫЕ === */
+        :root {
+            /* Классический Человек-паук (светлая тема) */
+            --spider-red: #e62429;
+            --spider-blue: #2a5ca7;
+            --spider-light: #f0f0f0;
+            --spider-dark: #111;
+            --bg-color: #ffffff;
+            --text-color: #111;
+            --card-bg: #f8f9fa;
+            --border-color: #ddd;
+            --comic-shadow: 4px 4px 0 #000;
+            --hero-bg: linear-gradient(135deg, var(--spider-light) 0%, #fff 100%);
+            --spider-web: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L50 100 M0 50 L100 50 M20 20 L80 80 M80 20 L20 80' stroke='%23e62429' stroke-width='1' opacity='0.1'/%3E%3C/svg%3E");
+        }
+
+        [data-theme="dark"] {
+            /* Симбиот Человек-паук (темная тема) */
+            --spider-red: #000000;
+            --spider-blue: #8a2be2;
+            --spider-light: #1a1a1a;
+            --spider-dark: #8a2be2;
+            --bg-color: #0a0a0a;
+            --text-color: #e0e0ff;
+            --card-bg: #1a1a2e;
+            --border-color: #333344;
+            --comic-shadow: 4px 4px 0 var(--spider-blue);
+            --hero-bg: linear-gradient(135deg, #000 0%, #1a0033 100%);
+            --spider-web: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L50 100 M0 50 L100 50 M20 20 L80 80 M80 20 L20 80' stroke='%238a2be2' stroke-width='1' opacity='0.2'/%3E%3C/svg%3E");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.5s ease, color 0.3s ease, border-color 0.5s ease;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            background-image: var(--spider-web);
+            background-size: 150px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        /* === ШРИФТ КОМИКСОВ === */
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        .comic-font {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        /* === HEADER === */
+        header {
+            background-color: var(--spider-red);
+            padding: 1.5rem 2rem;
+            border-bottom: 6px solid var(--spider-blue);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 2.8rem;
+            color: white;
+            text-shadow: 3px 3px 0 var(--spider-blue);
+            animation: bounce 2s infinite;
+        }
+
+        .logo .spider-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--spider-blue);
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2M12 4C16.4 4 20 7.6 20 12C20 16.4 16.4 20 12 20C7.6 20 4 16.4 4 12C4 7.6 7.6 4 12 4M12 6C10.3 6 9 7.3 9 9C9 10.7 10.3 12 12 12C13.7 12 15 10.7 15 9C15 7.3 13.7 6 12 6M12 14C9.8 14 7.8 15.2 6.7 17C7.8 18.8 9.8 20 12 20C14.2 20 16.2 18.8 17.3 17C16.2 15.2 14.2 14 12 14Z'/%3E%3C/svg%3E") no-repeat center;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2M12 4C16.4 4 20 7.6 20 12C20 16.4 16.4 20 12 20C7.6 20 4 16.4 4 12C4 7.6 7.6 4 12 4M12 6C10.3 6 9 7.3 9 9C9 10.7 10.3 12 12 12C13.7 12 15 10.7 15 9C15 7.3 13.7 6 12 6M12 14C9.8 14 7.8 15.2 6.7 17C7.8 18.8 9.8 20 12 20C14.2 20 16.2 18.8 17.3 17C16.2 15.2 14.2 14 12 14Z'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+            -webkit-mask-size: contain;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border: 3px solid var(--spider-blue);
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            transition: all 0.3s;
+            display: inline-block;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        nav a:hover {
+            background-color: var(--spider-blue);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 0 black;
+        }
+
+        .theme-toggle {
+            background: var(--spider-blue);
+            border: 3px solid white;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .theme-toggle:hover {
+            background: var(--spider-red);
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .theme-icon {
+            width: 24px;
+            height: 24px;
+            background: white;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20V4Z'/%3E%3C/svg%3E") no-repeat center;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20V4Z'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            transition: transform 0.5s;
+        }
+
+        [data-theme="dark"] .theme-icon {
+            transform: rotate(180deg);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            background: var(--hero-bg);
+            border: 6px solid var(--spider-red);
+            border-radius: 20px;
+            box-shadow: var(--comic-shadow);
+            animation: zoomIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "SPIDER-PORTFOLIO!";
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: var(--spider-red);
+            color: white;
+            padding: 10px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 15px;
+            border: 8px solid var(--spider-blue);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+            animation: swing 3s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        .hero-content {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            color: var(--spider-red);
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0 var(--spider-blue);
+            line-height: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-left: 5px solid var(--spider-blue);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .hero .age-city {
+            display: inline-block;
+            background: var(--spider-blue);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* === MAIN CONTENT === */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+            flex: 1;
+        }
+
+        .comic-panel {
+            background: var(--card-bg);
+            border: 5px solid var(--spider-red);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--comic-shadow);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .comic-panel:nth-child(even) {
+            border-color: var(--spider-blue);
+        }
+
+        .comic-title {
+            font-size: 2.5rem;
+            color: var(--spider-red);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 4px dotted var(--spider-blue);
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .comic-title::after {
+            content: "!";
+            color: var(--spider-red);
+            animation: blink 1s infinite;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 3px solid var(--border-color);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--spider-red);
+        }
+
+        .skill-category h3 {
+            color: var(--spider-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .qualities-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .quality-tag {
+            background: var(--spider-red);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            border: 3px solid var(--spider-blue);
+            animation: popIn 0.5s backwards;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+        }
+
+        .quality-tag:nth-child(even) {
+            background: var(--spider-blue);
+            border-color: var(--spider-red);
+        }
+
+        .dreams-list {
+            list-style: none;
+        }
+
+        .dreams-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--card-bg);
+            border-left: 5px solid var(--spider-red);
+            border-radius: 0 10px 10px 0;
+            position: relative;
+            padding-left: 3.5rem;
+        }
+
+        .dreams-list li::before {
+            content: "🕷";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: var(--spider-red);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-top: 6px solid var(--spider-blue);
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-copyright {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .footer-author {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            background: var(--spider-blue);
+            display: inline-block;
+            margin: 0 auto;
+            border-radius: 10px;
+            border: 3px solid white;
+            text-shadow: 2px 2px 0 #000;
+            animation: glow 2s infinite alternate;
+        }
+
+        /* === АНИМАЦИИ === */
+        @keyframes slideDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px var(--spider-blue); }
+            to { box-shadow: 0 0 20px var(--spider-blue), 0 0 30px var(--spider-blue); }
+        }
+
+        /* Анимация для тегов при загрузке */
+        .quality-tag {
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+
+        /* === АДАПТИВНОСТЬ === */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .logo h1 {
+                font-size: 2.2rem;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .comic-title {
+                font-size: 2rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="spider-icon"></div>
+                <h1 class="comic-font">МАКСИМ ВАЛИШИН</h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#about" class="comic-font">ОБО МНЕ</a></li>
+                    <li><a href="#skills" class="comic-font">СУПЕР-СПОСОБНОСТИ</a></li>
+                    <li><a href="#qualities" class="comic-font">КАЧЕСТВА</a></li>
+                    <li><a href="#dreams" class="comic-font">МЕЧТЫ</a></li>
+                </ul>
+            </nav>
+            
+            <button class="theme-toggle comic-font" id="themeToggle">
+                <div class="theme-icon"></div>
+                <span id="themeText">СИМБИОТ</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-image">
+            <img src="hero.png" alt="Максим Валишин - ученик KIBERone" id="heroImage">
+        </div>
+        <div class="hero-content">
+            <h2 class="comic-font">SPIDER-CODER</h2>
+            <p>Привет! Я <strong>Максим Валишин</strong>, юный IT-герой из города Каменск-Уральский. Как Человек-паук использует паутину, я использую код, чтобы создавать крутые проекты!</p>
+            <p>Ученик школы программирования <strong>KIBERone</strong>, где осваиваю суперспособности цифрового мира.</p>
+            <div class="age-city comic-font">11 ЛЕТ | КАМЕНСК-УРАЛЬСКИЙ</div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- Обо мне -->
+        <section id="about" class="comic-panel">
+            <h2 class="comic-title">СУПЕР-ИСТОРИЯ</h2>
+            <p>Как Питер Паркер получил силы от радиоактивного паука, я получил свои способности в школе <strong>KIBERone</strong>! Теперь я создаю цифровое будущее, превращаю идеи в игры, приложения и дизайны.</p>
+            <p>Когда не программирую, развиваю супер-рефлексы в школе бокса и черпаю вдохновение из мира игр!</p>
+        </section>
+
+        <!-- Навыки -->
+        <section id="skills" class="comic-panel">
+            <h2 class="comic-title">СУПЕР-СПОСОБНОСТИ</h2>
+            <p>Мой технологический арсенал, который помогает бороться с цифровыми злодеями!</p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="comic-font">💻 ПРОГРАММИРОВАНИЕ</h3>
+                    <ul>
+                        <li>Vibe Coding & AI</li>
+                        <li>Roblox Studio</li>
+                        <li>Minecraft Education</li>
+                        <li>Thunkable</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="comic-font">🎨 ДИЗАЙН</h3>
+                    <ul>
+                        <li>Adobe Photoshop</li>
+                        <li>Figma</li>
+                        <li>Tinkercad</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="comic-font">🤖 НЕЙРОСЕТИ & AI</h3>
+                    <ul>
+                        <li>Яндекс Сервисы</li>
+                        <li>Нейросети</li>
+                        <li>Обучение голосовых помощников</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="comic-font">🛠 ИНСТРУМЕНТЫ</h3>
+                    <ul>
+                        <li>Power Point</li>
+                        <li>Цифровая база школьника</li>
+                        <li>Создание карт</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Качества -->
+        <section id="qualities" class="comic-panel">
+            <h2 class="comic-title">СУПЕР-КАЧЕСТВА</h2>
+            <p>С великой силой приходит великая ответственность! Мои личные суперспособности:</p>
+            
+            <div class="qualities-container" id="qualitiesContainer">
+                <!-- Качества будут добавлены через JavaScript -->
+            </div>
+        </section>
+
+        <!-- Мечты -->
+        <section id="dreams" class="comic-panel">
+            <h2 class="comic-title">СУПЕР-МЕЧТЫ</h2>
+            <p>Каждый герой стремится к чему-то большему! Мои цели:</p>
+            
+            <ul class="dreams-list">
+                <li><strong>Зарабатывать много денег</strong> с помощью IT-навыков, создавая полезные проекты</li>
+                <li><strong>Дом на берегу моря</strong>, где можно творить и наслаждаться природой</li>
+                <li><strong>Написать картину</strong> — возможно, цифровую, сочетая искусство и технологии</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-copyright comic-font">
+                © 2025 SPIDER-PORTFOLIO. ВСЕ ПРАВА ЗАЩИЩЕНЫ. 
+            </div>
+            <div class="footer-author comic-font">
+                САЙТ СОЗДАН: МАКСИМ ВАЛИШИН | KIBERone
+            </div>
+            <div class="footer-copyright">
+                Стиль: Классический Человек-паук / Симбиот | Анимации и код: собственная разработка
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // === ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ===
+        const themeToggle = document.getElementById('themeToggle');
+        const themeText = document.getElementById('themeText');
+        const body = document.body;
+        const heroImage = document.getElementById('heroImage');
+
+        // Проверяем сохраненную тему
+        const savedTheme = localStorage.getItem('spider-theme') || 'light';
+        body.setAttribute('data-theme', savedTheme);
+        updateThemeButton(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('spider-theme', newTheme);
+            
+            // Анимация переключения
+            themeToggle.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                themeToggle.style.transform = 'scale(1)';
+            }, 200);
+            
+            updateThemeButton(newTheme);
+            playThemeSound(newTheme);
+        });
+
+        function updateThemeButton(theme) {
+            if (theme === 'dark') {
+                themeText.textContent = 'КЛАССИКА';
+            } else {
+                themeText.textContent = 'СИМБИОТ';
+            }
+        }
+
+        function playThemeSound(theme) {
+            // Создаем звуковой эффект переключения
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(theme === 'dark' ? 300 : 500, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.5);
+        }
+
+        // === ДОБАВЛЕНИЕ КАЧЕСТВ С АНИМАЦИЕЙ ===
+        const qualities = [
+            "Дружелюбный", "Добрый", "Отзывчивый", "Сопереживающий", 
+            "Чуткий", "Пунктуальный", "Красивый", "Умный", "Открытый к новому"
+        ];
+
+        const qualitiesContainer = document.getElementById('qualitiesContainer');
+
+        qualities.forEach((quality, index) => {
+            const tag = document.createElement('div');
+            tag.className = 'quality-tag comic-font';
+            tag.textContent = quality;
+            tag.style.setProperty('--i', index);
+            qualitiesContainer.appendChild(tag);
+        });
+
+        // === АНИМАЦИЯ ПРИ ПРОКРУТКЕ ===
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Наблюдаем за всеми comic-panel
+        document.querySelectorAll('.comic-panel').forEach(panel => {
+            observer.observe(panel);
+        });
+
+        // === АНИМАЦИЯ МЕНЮ ПРИ КЛИКЕ ===
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Анимация нажатия
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+                
+                // Плавная прокрутка
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // === СЛУЧАЙНЫЕ КОМИКС-ЭФФЕКТЫ ===
+        const comicWords = ["POW!", "BOOM!", "ZAP!", "WOW!", "BAM!", "KAPOW!"];
+        
+        function createComicEffect() {
+            if (Math.random() > 0.3) return;
+            
+            const effect = document.createElement('div');
+            effect.className = 'comic-effect comic-font';
+            effect.textContent = comicWords[Math.floor(Math.random() * comicWords.length)];
+            effect.style.cssText = `
+                position: fixed;
+                top: ${Math.random() * 80 + 10}vh;
+                left: ${Math.random() * 80 + 10}vw;
+                font-size: ${Math.random() * 30 + 20}px;
+                color: ${Math.random() > 0.5 ? 'var(--spider-red)' : 'var(--spider-blue)'};
+                z-index: 10000;
+                pointer-events: none;
+                opacity: 0;
+                animation: comicPop 1s forwards;
+                text-shadow: 2px 2px 0 black;
+            `;
+            
+            document.body.appendChild(effect);
+            
+            setTimeout(() => {
+                effect.remove();
+            }, 1000);
+        }
+
+        // Добавляем CSS для анимации эффектов
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes comicPop {
+                0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+                50% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+                100% { transform: scale(1) rotate(0deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Создаем эффекты при кликах
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+                createComicEffect();
+            }
+        });
+
+        // Случайные эффекты каждые 10 секунд
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                createComicEffect();
+            }
+        }, 10000);
+
+        // === ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ ===
+        window.addEventListener('load', () => {
+            // Добавляем анимацию загрузки
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Первый комикс-эффект
+            setTimeout(() => {
+                createComicEffect();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
